@@ -1,3 +1,7 @@
+__author__ = "Alexander Timmermann"
+__email__ = "alexandertimmermann93@gmail.com"
+__status__ = "Done"
+
 import os.path
 import sys
 sys.path.append("../")
@@ -12,6 +16,9 @@ from data_generator import load_pickle, save_pickle, data_generator
 
 
 class TrainRNN:
+    """
+        Class to train the neural network for given specific parameters
+    """
 
     def __init__(self, units, learning_rate, layers, batch_size, epochs):
         """
@@ -68,14 +75,17 @@ class TrainRNN:
         reduce_learning_rate = callbacks.ReduceLROnPlateau(patience=5, min_delta=1e-12)
 
         inputs = Input(shape=(input_shape[1], input_shape[2]))
+
         if self.layers == 1:
             x = CuDNNLSTM(units=self.units, return_sequences=False)(inputs)
             x = Dense(units=2, activation='linear')(x)
+
         elif self.layers == 2:
             x = CuDNNLSTM(units=self.units, return_sequences=True)(inputs)
             x = BatchNormalization()(x)
             x = CuDNNLSTM(units=self.units, return_sequences=False)(x)
             x = Dense(units=2, activation='linear')(x)
+
         elif self.layers == 3:
             x = CuDNNLSTM(units=self.units, return_sequences=True)(inputs)
             x = BatchNormalization()(x)

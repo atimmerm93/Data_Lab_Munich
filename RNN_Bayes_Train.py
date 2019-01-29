@@ -1,3 +1,7 @@
+__author__ = "Alexander Timmermann"
+__email__ = "alexandertimmermann93@gmail.com"
+__status__ = "Production"
+
 from skopt.space import Real, Integer
 from callbacks import StopTraining
 from keras import callbacks
@@ -28,11 +32,14 @@ dimensions = [learning_rate, units, layers, batch_size]
 @use_named_args(dimensions=dimensions)
 def def_bayes_train(learning_rate, units, layers, batch_size):
     """
-        Traines a network with the parameters returned by the bayes algorithm
-        :param input_path: path to input data
-        :param label_path: path to label data
-        :return:
+        traines networks with the parameters returned by the bayes algorithm
+    :param learning_rate: range of learning rate
+    :param units: range of units
+    :param layers: range of layers
+    :param batch_size: range of batch_size
+    :return: no return value
     """
+
     # 'number of works dependence on number of cores of the system'
     n_workers = 16
     train_folder = input_path + "\\train\\input\\"
@@ -142,10 +149,11 @@ def def_bayes_train(learning_rate, units, layers, batch_size):
 
 def run_bayes_train(no_bayes_iter, default_parameters):
     """
+        Runs the bayes algorithm with the previous defined function
 
-    :param no_bayes_iter:
-    :param default_parameters:
-    :return:
+    :param no_bayes_iter: number of networks that will be trained
+    :param default_parameters: start values for the bayes algorithm
+    :return: no return value
     """
     search_result = gp_minimize(func=def_bayes_train,
                                 dimensions=dimensions,
