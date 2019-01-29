@@ -2,6 +2,10 @@ __author__ = "Alexander Timmermann"
 __email__ = "alexandertimmermann93@gmail.com"
 __status__ = "Done"
 
+######################################################
+##### Skript zum trainieren des RNNs
+######################################################
+
 import os.path
 import sys
 sys.path.append("../")

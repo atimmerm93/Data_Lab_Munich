@@ -2,6 +2,11 @@ __author__ = "Alexander Timmermann"
 __email__ = "alexandertimmermann93@gmail.com"
 __status__ = "Production"
 
+######################################################
+##### Skript für die Hyperparameteroptimierung
+##### des RNNs
+######################################################
+
 from skopt.space import Real, Integer
 from callbacks import StopTraining
 from keras import callbacks

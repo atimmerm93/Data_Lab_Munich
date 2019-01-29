@@ -122,7 +122,7 @@ class data_preprocess():
 
         self.mittelwert_output = scaler.mean_
         self.varianz_output = scaler.var_
-        stdv_output = np.sqrt(self.varianz_output)
+        self.stdv_output = np.sqrt(self.varianz_output)
         min = scaler2.data_min_
         max = scaler2.data_max_
         dif = max - min
